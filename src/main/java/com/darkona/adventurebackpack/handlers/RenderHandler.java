@@ -1,6 +1,7 @@
 package com.darkona.adventurebackpack.handlers;
 
 import com.darkona.adventurebackpack.proxy.ClientProxy;
+import com.darkona.adventurebackpack.config.ConfigHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,7 +29,11 @@ public class RenderHandler
 
         float pitch = event.entity.rotationPitch;
         float yaw = event.entity.rotationYaw;
-        ClientProxy.rendererWearableEquipped.render(event.entity, x, y, z, rotationX, rotationY, rotationZ, pitch, yaw);
+        // ClientProxy.rendererWearableEquipped.render(event.entity, x, y, z, rotationX, rotationY, rotationZ, pitch, yaw);
+        if (ConfigHandler.RENDER_BACKPACK_ON_PLAYER)
+        {
+            ClientProxy.rendererWearableEquipped.render(event.entity, x, y, z, rotationX, rotationY, rotationZ, pitch, yaw);
+        }
 
         event.renderCape = false;
     }
